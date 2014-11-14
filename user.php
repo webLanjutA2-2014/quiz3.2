@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Daftar Penyewa</title>
+	<title>Daftar User</title>
 </head>
 <body>
 <?php 
@@ -10,46 +10,42 @@
 	$dbname = 'persewaan';
 	$user = 'root';
 	$pass = '';
-
-	//membuat koneksi ke database
-	$con = mysqli_connect($host, $user, $pass, $dbname);
-	//cek ada kesalahan koneksi atau tidak?
-	if (mysqli_connect_errno()) {
-		echo "Koneksi Error : " . mysqli_connect_error();
-	}
-
-	//membuat query
-	$query = mysqli_query($con, "SELECT * FROM user");
-
-	//mengambil data hasil query dan menampilkannya
 	
-	echo "<h2>DAFTAR Penyewa</h2>";
+	//koneksi ke datbase
+	$con = mysqli_connect ($host ,$user,$pass,$dbname);
+	
+	//query
+	$query = mysqli_query($con, "SELECT * FROM user");
+	
+	//megngambil data hasil query dan menampilkannya
+	echo"<h2>Daftar User</h2>";
 	?>
-	<a href="tambahuser.php">Tambah Data Penyewa</a>
-	<table><tr>
-		<th>Id</th>
-		<th>Nama</th>
+	<a href="tambah_user.php" >Tambah User</a>
+	<table border = 1><tr>
+		<th>No</th>
+		<th>Id User</th>
+		<th>Nama User</th>
 		<th>Password</th>
 		<th>No Telepon</th>
-		<th colspan="2">Aksi</th>
+		<th colspan="2" align="center">Aksi</th>
 	</tr>
+	
 	<?php
-	$i = 1;
-	while ($data = mysqli_fetch_assoc($query)) {
-		echo "<tr>";
-		echo "<td>".$i."</td>";
+	$i=1;
+	while ($data = mysqli_fetch_assoc($query)){
+		echo "<tr>"	;
+		echo "<td>"	.$i."</td>";
 		echo "<td>".$data['id_user']."</td>";
-		echo "<td>".$data['nama']."</td>";
+		echo "<td>".$data['username']."</td>";
 		echo "<td>".$data['password']."</td>";
 		echo "<td>".$data['no_telepon']."</td>";
-		echo "<td><a href=\"edituser.php?id=".$data['id_user']."\">Edit</a><td>";
-		echo "<td><a href=\"hapususer.php?id="
+		echo "<td><a href=\"edit.php?id=".$data['id_user']."\">Edit</a></td>";
+		echo "<td><a href=\"hapus.php?id="
 			.$data['id_user']."\" 
-			onclick=\"alert('Anda Akan Menghapus Data pengguna!')\"> Hapus</a><td>";
+			onclick=\"alert('Anda Akan Menghapus Data User!')\"> Hapus</a></td>";
 		echo "</tr>";
 		$i++;
 	}
 	?>
 	</table>
-</body>
-</html>
+	<tr><td><a href="index.php">Kembali ke Awal</a></td></tr>
