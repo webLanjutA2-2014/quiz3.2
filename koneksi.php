@@ -1,6 +1,6 @@
-<?php 
+	<?php 
 		$host='localhost';
-		$dbname='Quis';
+		$dbname='tugas';
 		$user='root';
 		$pass='';
 		
@@ -10,3 +10,19 @@
 			echo "koneksi error: ". mysqli_connect_error();
 		}
 		?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
