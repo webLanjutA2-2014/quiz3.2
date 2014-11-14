@@ -1,55 +1,40 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Daftar Buku yang TERSEDIA !!!</title>
-	</head>
+	<head>
+	<title> LOGIN </title>
+	</head> 
 	<body>
-	<?php
-		$host='localhost';
-		$dbname='kuis';
-		$user='root';
-		$pass='';
+	<form action = "" method="post">
+		<p>Masukan Nama (admin)
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;<input type="text" name="id"></p>
+		<p>Masukan Password (admin)
+			<input type="password" name="pass"></p>
+		<p><input type="submit" name="submit" value="Enter"></p>
 		
-		$con = mysqli_connect($host, $user, $pass, $dbname);
-		
-		if(mysqli_connect_errno()){
-			echo "koneksi error: ". mysqli_connect_error();
-		
-		}else{
-		
-		echo "";
-		}
-
-		$query = mysqli_query($con, "select * from buku");
-	
-		echo "<h2> Daftar Buku</h2>";
+		</form>
+		<a href="pencarian.php">Cari ID</a
+		<?php
+			session_start();
+			require('konek.php');
+			if($_SERVER['REQUEST_METHOD']=="POST"){
+						$sql="select * from admin where id='".$_POST['id']."'
+						and pass='".$_POST['pass']."'";
+				$query=mysqli_query($con, $sql)or die(mysqli_error($con));
+				if(mysqli_num_rows($query)){
+					while($row=mysqli_fetch_assoc($query)){
+						$_SESSION['login']  = 1;
+						$_SESSION['username']  = $row['id'];
+						
+						echo "berhasil";
+						
+						header('location:buku.php');
+					}
+				}else{
+					echo "username atau password anda salah";
+				}
+			}
+			
 		?>
 		
-			<table>
-			<tr><th>No.</th>
-			<th>Judul Buku</th>
-			<th>Pengarang</th>
-			<th>Id Buku</th>
-			<a href="pengguna.php">Pinjam Buku</a>
-			<a href="login.php">   Lihat Status</a>
-			</tr>
-		<?php
-		$i=1;
-		while ($row = mysqli_fetch_array($query)){
-		
-		echo "<tr>";
-		echo "<td>".$i."</td>";
-		echo "<td>".$row['judul']."</td>";
-		echo "<td>".$row['pengarang']."</td>";
-		echo "<td>".$row['id_buk']."</td>";
-	
-		echo "</tr>";
-		$i++;
-		}
-	
-		
-		
-		
-	?>
-	
-	
-	</table>
+	</body>
+</html>
