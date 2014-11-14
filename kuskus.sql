@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2014 at 08:20 PM
+-- Generation Time: Nov 14, 2014 at 09:25 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -74,6 +74,8 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `buku` varchar(10) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali` date NOT NULL,
+  `durasi` int(11) NOT NULL,
+  `denda` int(11) NOT NULL,
   PRIMARY KEY (`id_tran`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,8 +83,9 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_tran`, `nama`, `nohp`, `buku`, `tanggal_pinjam`, `tanggal_kembali`) VALUES
-(1, 'Yogine', 2147483647, 'Nusantaran', '2014-11-14', '2014-11-21');
+INSERT INTO `transaksi` (`id_tran`, `nama`, `nohp`, `buku`, `tanggal_pinjam`, `tanggal_kembali`, `durasi`, `denda`) VALUES
+(1, 'Yogine', 2147483647, 'Nusantara', '2014-11-14', '2014-11-17', 0, 0),
+(7, 'Adjie', 2147483647, 'Dor', '2014-11-14', '2014-11-14', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

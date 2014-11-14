@@ -13,16 +13,6 @@
  
  <?php
  
-$tgl_pinjam = date('Y-m-d');
-$lama_pinjam = 7;
-
-$query = mysql_query("SELECT DATE_ADD('$tgl_pinjam',
-                      INTERVAL '$lama_pinjam' DAY) 
-                      AS tanggal_kembali"
-                    );
-$hasil = mysql_fetch_object($query);
-$tgl_kembali = $hasil->tanggal_kembali;
- 
 	require('konek.php');
 	
 	if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -30,6 +20,16 @@ $tgl_kembali = $hasil->tanggal_kembali;
 	$nam = $_POST['nama'];
 	$hp  = $_POST['nohp'];
 	$buk = $_POST['buku'];
+	$tgl_pinjam = date('Y-m-d');
+	$lama_pinjam = 3;
+
+$query = mysql_query("SELECT DATE_ADD('$tgl_pinjam',
+                      INTERVAL +3 DAY) 
+                      AS tanggal_kembali"
+                    );
+$hasil = mysql_fetch_object($query);
+$tgl_kembali = $hasil->tanggal_kembali;
+	//echo $tgl_kembali;
 	
 	$sql="insert into transaksi(id_tran,nama,nohp ,buku,tanggal_pinjam,tanggal_kembali	)values
 	('$transaksi', '$nam', '$hp','$buk','$tgl_pinjam','$tgl_kembali')";

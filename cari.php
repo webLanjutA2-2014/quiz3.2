@@ -15,7 +15,7 @@
 		$id_transaksi=$_POST['id_tran'];
 		
 	
-	$sql="Update transaksi set tanggal_kembali = now() ,
+	$sql="Update transaksi set tanggal_kembali = now(), 
 	 durasi =(select datediff(now(),tanggal_pinjam)) where id_tran=".$_POST['id_tran'];
 	
 	mysqli_query($con, $sql) or die(' Error'.mysqli_error($con));
