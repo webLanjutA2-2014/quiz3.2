@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2014 at 10:58 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Generation Time: Nov 14, 2014 at 01:40 AM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,18 +27,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `transaksi` (
   `judul_buku` varchar(100) NOT NULL,
-  `tanggal` date NOT NULL,
-  `id_transaksi` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tanggal_pinjam` date NOT NULL,
+  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_pelanggan` varchar(100) NOT NULL,
+  `no_telepon` int(11) NOT NULL,
+  `tanggal_kembali` date NOT NULL,
+  `durasi` int(11) NOT NULL,
+  `denda` int(11) NOT NULL,
+  PRIMARY KEY (`id_transaksi`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`judul_buku`, `tanggal`, `id_transaksi`, `id_user`) VALUES
-('habis gelap terbitlah terang', '2014-11-10', 1, 1),
-('cahaya di langit', '2014-11-10', 2, 2);
+INSERT INTO `transaksi` (`judul_buku`, `tanggal_pinjam`, `id_transaksi`, `nama_pelanggan`, `no_telepon`, `tanggal_kembali`, `durasi`, `denda`) VALUES
+('habis gelap terang', '2014-11-13', 1, 'aragib', 8543345, '0000-00-00', 0, 0),
+('subuh pagi', '2014-11-13', 2, 'sunu', 86574545, '0000-00-00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -49,7 +53,7 @@ INSERT INTO `transaksi` (`judul_buku`, `tanggal`, `id_transaksi`, `id_user`) VAL
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `no_telepon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -58,11 +62,5 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama`, `password`, `no_telepon`) VALUES
-(1, 'andi', 'andi', 85423723),
-(2, 'dino', 'dino', 2147483647),
-(3, 'yana', 'e1ce1e8d0877b06b55b613d5b22b0251', 9577896);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO `user` (`id_user`, `username`, `password`, `no_telepon`) VALUES
+(1, 'andi', 'andi', 85423723);
