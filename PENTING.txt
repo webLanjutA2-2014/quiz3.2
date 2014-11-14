@@ -1,0 +1,3 @@
+Yg di jalanin terlebih dahulu utama.php BUKAN index.php
+
+peminjam.php digunakan peminjam untuk login.
